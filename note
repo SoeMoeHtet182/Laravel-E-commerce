@@ -1,0 +1,39 @@
+# user
+
+# admin
+
+# brand
+
+id slug name
+
+# category
+
+id slug name
+
+# color
+
+id slug name
+
+# supplier_id
+
+id name image desciption
+
+# product
+
+id category_id brand_id supplier_id buying_price slug name image sale_price discount_price total_qty like_count view_count
+
+# product_add_transition
+
+supplier_id product_id total_qty
+
+# product_review
+
+id product_id user_id rating review
+
+# product_cart
+
+id product_id user_id total_quantity total_price
+
+# product_order
+
+user_id product_id total_qty status('pending','success','cancel')
