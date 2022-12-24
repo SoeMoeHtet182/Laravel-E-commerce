@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\ProductCart;
+use App\Models\ProductOrder;
+use Illuminate\Support\Facades\View;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +28,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Paginator::useBootstrap();
+        $data = Category::all();
+        view()->share('categories', $data);
+        View::composer('*', function ($view) {
+            if (auth()->check()) {
+                $cartCount = ProductCart::where('user_id', auth()->user()->id)->count();
+                $view->with('cartCount', $cartCount);
+            }
+        });
+        View::composer('*', function ($view) {
+            if (auth()->guard('admin')->user()) {
+                $orderCount = ProductOrder::where('status', 'pending')->count();
+                $view->with('noti', $orderCount);
+            }
+        });
     }
 }

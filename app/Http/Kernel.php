@@ -2,6 +2,11 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Admin;
+use App\Http\Middleware\Locale;
+use App\Http\Middleware\RedirectIfAuth;
+use App\Http\Middleware\RedirectIfNotAuth;
+use App\Http\Middleware\Suspended;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -37,6 +42,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            Locale::class,
         ],
 
         'api' => [
@@ -63,5 +69,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'admin' => Admin::class,
+        'redirectIfAuth' => RedirectIfAuth::class,
+        'redirectIfNotAuth' => RedirectIfNotAuth::class,
+        'suspended' => Suspended::class,
     ];
 }

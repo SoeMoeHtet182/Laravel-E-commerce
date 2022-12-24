@@ -18,10 +18,23 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'display_name',
+        'full_name',
+        'image',
         'email',
+        'phone',
+        'address',
+        'city',
+        'postal_code',
+        'suspended',
         'password',
     ];
+    protected $appends = ['image_url'];
+
+    public function getImageUrlAttribute()
+    {
+        return asset('/images/' . $this->image);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -55,5 +68,10 @@ class User extends Authenticatable
     public function review()
     {
         return $this->hasMany(ProductReview::class);
+    }
+
+    public function level()
+    {
+        return $this->hasOne(UserLevel::class);
     }
 }

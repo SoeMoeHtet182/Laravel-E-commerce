@@ -22,12 +22,14 @@ class Product extends Model
         'discount_price',
         'total_quantity',
         'like_count',
-        'view_count'
+        'view_count',
+        'description'
     ];
+    protected $appends = ['image_url'];
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class,);
     }
 
     public function brand()
@@ -42,7 +44,7 @@ class Product extends Model
 
     public function color()
     {
-        return $this->belongsToMany(Color::class);
+        return $this->belongsToMany(Color::class, 'product_color');
     }
 
     public function transition()
@@ -63,5 +65,15 @@ class Product extends Model
     public function review()
     {
         return $this->hasMany(ProductReview::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return asset('/images/' . $this->image);
     }
 }

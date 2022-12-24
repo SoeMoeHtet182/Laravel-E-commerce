@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Category::class);
             $table->foreignIdFor(Brand::class);
             $table->foreignIdFor(Supplier::class);
             $table->integer('buying_price');
@@ -26,10 +25,11 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('image');
             $table->integer('sale_price');
-            $table->integer('discount_price');
+            $table->integer('discount_price')->default(0);
             $table->integer('total_quantity');
-            $table->integer('like_count');
+            $table->longText('description');
             $table->integer('view_count');
+            $table->integer('like_count');
             $table->timestamps();
         });
     }

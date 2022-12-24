@@ -9,7 +9,7 @@ class ProductAddTransition extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['supplier_id', 'product_id', 'total_quantity'];
+    protected $fillable = ['supplier_id', 'product_id', 'total_quantity', 'description'];
 
     public function supplier()
     {

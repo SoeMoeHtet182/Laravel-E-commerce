@@ -20,6 +20,8 @@ class CreateProductOrdersTable extends Migration
             $table->foreignIdFor(Product::class);
             $table->foreignIdFor(User::class);
             $table->integer('total_quantity');
+            $table->integer('total_amount');
+            $table->enum('status', ['pending', 'success', 'cancel'])->default('pending');
             $table->timestamps();
         });
     }

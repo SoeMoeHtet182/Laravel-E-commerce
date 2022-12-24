@@ -20,6 +20,7 @@ class CreateProductAddTransitionsTable extends Migration
             $table->foreignIdFor(Supplier::class);
             $table->foreignIdFor(Product::class);
             $table->integer('total_quantity');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

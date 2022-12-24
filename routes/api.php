@@ -1,19 +1,17 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/home', 'Api\HomeApiController@home');
+Route::get('/product/detail/{slug}', 'Api\ProductApiController@detail');
+Route::post('/like-product', 'Api\ProductApiController@like');
+Route::post('/make-review/{slug}', 'Api\ReviewApiController@makeReview');
+Route::post('/add-to-cart/{slug}', 'Api\CartApiController@addCart');
+Route::get('/user_profile', 'Api\ProfileApiController@profile');
+Route::post('/update-user_info/{id}', 'Api\ProfileApiController@updateInfo');
+Route::get('/cart/{id}', 'Api\CartApiController@cart');
+Route::post('/update-qty', 'Api\CartApiController@updateQty');
+Route::post('/remove-cart', 'Api\CartApiController@removeCart');
+Route::post('/update-order', 'Api\OrderApiController@updateOrder');
+Route::get('/order', 'Api\OrderApiController@order');
+Route::post('/change-password', 'Api\AuthApiController@changePassword');

@@ -1,0 +1,65 @@
+#main-nav h1 {
+    color: black;
+    margin-bottom: -15px;
+}
+
+.nav-hide{
+    display: none;
+}
+
+@media only screen and (max-width: 640px) {
+    .banner {
+        background-image: url(../images/e-commerce\ cart\ bg-image.jpg);
+        background-size: contain;
+        padding: 0;
+        margin-top: -20px;
+    }
+    .banner .caption {
+        padding-left: 0;
+    }
+    .left-container-text {
+        display: none;
+    }
+    .main-button {
+        margin-top: 100px;
+    }
+    .sign-in-btn {
+        margin-top: 5px;
+    }
+    .right-login-container {
+        padding: 0 !important;
+        margin-top: -110px ;
+    }
+    .auth-form {
+        padding: 44px !important;
+    }
+    .input {
+        width: 100%;
+    }
+    #account-button, #lang-button {
+        display: none;
+    }
+    .nav-hide {
+        display: list-item;
+        text-align: match-parent;
+    }
+    .small-menu {
+        display: block !important;
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+    }
+    .featured-page {
+        margin-top: 0;
+    }
+    #search-bar {
+        position: relative;
+        top: 10px;
+        right: 30px;
+    }
+    #root {
+        margin-top: 0 !important;
+    }
+    #cart-table, #order-table  {
+        overflow-x: scroll;
+    }
+}

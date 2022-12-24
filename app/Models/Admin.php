@@ -19,10 +19,15 @@ class Admin extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'image',
         'email',
         'password',
     ];
-
+    protected $appends = ['image_url'];
+    public function getImageUrlAttribute()
+    {
+        return asset('/images/' . $this->image);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
