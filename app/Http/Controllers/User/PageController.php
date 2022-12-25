@@ -13,7 +13,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        return view('user.index');
+        return view('user.home');
     }
 
     public function about()
