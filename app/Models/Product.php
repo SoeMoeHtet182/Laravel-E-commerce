@@ -76,4 +76,9 @@ class Product extends Model
     {
         return asset('/images/' . $this->image);
     }
+
+    public function like()
+    {
+        return $this->hasMany(ProductLike::class);
+    }
 }

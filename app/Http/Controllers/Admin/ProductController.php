@@ -9,8 +9,6 @@ use App\Models\Color;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\ProductAddTransition;
-use App\Models\ProductImage;
-use App\Models\ProductViewAndLike;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -113,7 +111,7 @@ class ProductController extends Controller
         $p->color()->sync($colors);
         $p->category()->sync($categories);
 
-        return redirect()->back()->with('success', 'Created successfully');
+        return redirect('/admin/add-product_images/' . $p->id)->with('success', 'Created successfully. Add images of this product');
     }
 
     public function edit($id)
@@ -263,7 +261,7 @@ class ProductController extends Controller
 
     public function images()
     {
-        $products = Product::select('id', 'name')->get();
+        $products = Product::select('id', 'name')->latest()->paginate(3);
         $productImages = Image::with('product');
         if (!$productImages->count()) {
             $productImages = [];
@@ -314,7 +312,7 @@ class ProductController extends Controller
                 'image_url' => $file['image_url']
             ]);
         }
-        return redirect('/admin/product_images')->with('success', 'Assigned images to product successfully');
+        return redirect(route('product.create'))->with('success', 'Assigned images to product successfully');
     }
 
     public function showEditImages($id)

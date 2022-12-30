@@ -49,7 +49,8 @@
         @auth
             <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/profile') }}">{{ __('site.profile') }}</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="{{ url('/logout') }}">{{ __('site.log out') }}</a></li>
+            <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/logout') }}">{{ __('site.log out') }}</a>
+            </li>
         @endauth
         <small class="small-menu d-none text-center">Language</small>
         <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/locale/mm') }}">{{ __('site.myanmar') }}</a>

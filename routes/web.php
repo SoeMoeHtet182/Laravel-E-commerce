@@ -39,6 +39,9 @@ Route::get('/aboutUs', 'User\PageController@about');
 Route::get('/contactUs', 'User\PageController@contact');
 Route::get('/locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
+    if ($locale === 'mm') {
+        return redirect()->back()->with('success', 'ဘာသာစကား ပြောင်းလဲပြီးပါပြီ');
+    }
     return redirect()->back()->with('success', 'Language changed');
 });
 

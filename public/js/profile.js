@@ -3600,7 +3600,7 @@ var Cart = function Cart() {
         children: [loader && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Component_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {}), !loader && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
           children: [displayOff && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "alert alert-secondary text-center fs-5",
-            children: "You have no product in cart"
+            children: window.locale === 'mm' ? 'သင်၏ ဈေးခြင်းထဲတွင် ဘာမှ မရှိပါ' : 'You have no product in cart'
           }), !displayOff && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
               className: "table table-striped bg-white text-center align-middle",
@@ -3609,27 +3609,22 @@ var Cart = function Cart() {
                 className: "py-3",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                    children: "No."
+                    children: window.locale === 'mm' ? 'အမှတ်စဥ်' : 'No.'
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                    children: "Name"
+                    width: '15%',
+                    children: window.locale === 'mm' ? 'အမည်' : 'Name'
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                    className: "swapCol1",
-                    children: "Image"
+                    children: window.locale === 'mm' ? 'ဓာတ်ပုံ' : 'Image'
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                    className: "swapCol1",
-                    children: "Quantity"
+                    children: window.locale === 'mm' ? 'ပမာဏ' : 'Total Quantity'
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                    className: "swapCol1",
-                    children: "Sale price"
+                    children: window.locale === 'mm' ? 'ရောင်းဈေး' : 'Sale Price'
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                    className: "swapCol2",
-                    children: "Total price"
+                    children: window.locale === 'mm' ? 'စုစုပေါင်းငွေ' : 'Total Price'
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                    className: "swapCol2",
-                    children: "Add/Remove"
+                    children: window.locale === 'mm' ? 'တိုးမည်/လျှော့မည်' : 'Add/Remove'
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                    className: "swapCol2",
-                    children: "Delete"
+                    children: window.locale === 'mm' ? 'ဖျက်မည်' : 'Delete'
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
@@ -3682,7 +3677,7 @@ var Cart = function Cart() {
                         onClick: function onClick() {
                           updateCartBySave(d.id, d.total_quantity, d.total_price);
                         },
-                        children: "Save"
+                        children: window.locale === 'mm' ? 'သိမ်းမည်' : 'Save'
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
                       className: "swapCol2",
@@ -3703,9 +3698,9 @@ var Cart = function Cart() {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
                     colSpan: 6,
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("b", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("b", {
                       className: "float-end",
-                      children: "Total:"
+                      children: [window.locale === 'mm' ? 'စုစုပေါင်းကျငွေ' : 'Total', ":"]
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
                     colSpan: 2,
@@ -3724,7 +3719,7 @@ var Cart = function Cart() {
         onClick: function onClick() {
           updateOrder();
         },
-        children: "Order"
+        children: window.locale === 'mm' ? 'အော်ဒါတင်မည်' : 'Order'
       })
     })]
   });
@@ -3904,19 +3899,19 @@ var Nav = function Nav() {
               className: "breadcrumb-item ".concat(pathname === '/' ? 'active' : ''),
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
                 to: "/",
-                children: "Profile"
+                children: window.locale === 'mm' ? 'ပရိုဖိုင်' : 'Profile'
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
               className: "breadcrumb-item ".concat(pathname === '/cart' ? 'active' : ''),
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
                 to: "/cart",
-                children: "Cart"
+                children: window.locale === 'mm' ? 'ဈေးခြင်း' : 'Cart'
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
               className: "breadcrumb-item ".concat(pathname === '/order' ? 'active' : ''),
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
                 to: "/order",
-                children: "Order List"
+                children: window.locale === 'mm' ? 'အော်ဒါစာရင်း' : 'Order List'
               })
             })]
           })
@@ -3988,7 +3983,7 @@ var Order = function Order() {
       children: [loader && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Component_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {}), !loader && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
         children: [displayOff && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "alert alert-secondary text-center fs-5",
-          children: "You have no product in order list"
+          children: window.locale === 'mm' ? 'သင်၏ အော်ဒါစာရင်းထဲတွင် ဘာမှ မရှိပါ' : 'You have no product in order list'
         }), !displayOff && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
             className: "table table-striped bg-white text-center",
@@ -3996,18 +3991,18 @@ var Order = function Order() {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                  children: "No."
+                  children: window.locale === 'mm' ? 'အမှတ်စဥ်' : 'No.'
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
                   width: '15%',
-                  children: "Name"
+                  children: window.locale === 'mm' ? 'အမည်' : 'Name'
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                  children: "Image"
+                  children: window.locale === 'mm' ? 'ဓာတ်ပုံ' : 'Image'
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                  children: "Total Quantity"
+                  children: window.locale === 'mm' ? 'စုစုပေါင်းပမာဏ' : 'Total Quantity'
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                  children: "Total Price"
+                  children: window.locale === 'mm' ? 'စုစုပေါင်းငွေ' : 'Total Price'
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
-                  children: "Status"
+                  children: window.locale === 'mm' ? 'အခြေအနေ' : 'Status'
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
@@ -4031,13 +4026,13 @@ var Order = function Order() {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
                     children: [d.status == 'pending' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
                       className: "badge bg-warning",
-                      children: "Pending"
+                      children: window.locale === 'mm' ? 'စောင့်ဆိုင်းဆဲ' : 'Pending'
                     }), d.status == 'success' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
                       className: "badge bg-success",
-                      children: "Success"
+                      children: window.locale === 'mm' ? 'အောင်မြင်သည်' : 'Success'
                     }), d.status == 'cancel' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
                       className: "badge bg-danger",
-                      children: "Cancel"
+                      children: window.locale === 'mm' ? 'ပယ်ဖျက်ခဲ့သညါ)' : 'Cancel'
                     })]
                   })]
                 }, d.id);
@@ -4159,7 +4154,7 @@ var ProfileImage = function ProfileImage() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
           htmlFor: "files",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("small", {
-            children: "Upload Image"
+            children: window.locale === 'mm' ? 'ဓာတ်ပုံတင်ရန်' : 'Upload Image'
           }), " "]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
           id: "files",
@@ -4323,7 +4318,6 @@ var Profile = function Profile() {
       if (res.data.message === false) {
         showToastError('User not found');
       } else {
-        console.log(res.data.data);
         setUser(res.data.data);
         setLoader(false);
       }
@@ -4351,7 +4345,7 @@ var Profile = function Profile() {
                     className: "btn btn-outline-primary",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
                       to: "/change-password",
-                      children: "Change Password"
+                      children: window.locale === 'mm' ? 'စကားဝှက်ပြောင်းရန်' : 'Change Password'
                     })
                   })
                 })]
@@ -4369,7 +4363,7 @@ var Profile = function Profile() {
                     className: "col-sm-3",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
                       className: "mb-0",
-                      children: "Full Name"
+                      children: window.locale === 'mm' ? 'နာမည်ရင်း' : 'Full Name'
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                     className: "col-sm-9",
@@ -4384,7 +4378,7 @@ var Profile = function Profile() {
                     className: "col-sm-3",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
                       className: "mb-0",
-                      children: "Display Name"
+                      children: window.locale === 'mm' ? 'စခရင်နာမည်' : 'Display Name'
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                     className: "col-sm-9",
@@ -4399,7 +4393,7 @@ var Profile = function Profile() {
                     className: "col-sm-3",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
                       className: "mb-0",
-                      children: "Email"
+                      children: window.locale === 'mm' ? 'အီးမေးလ်' : 'Email'
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                     className: "col-sm-9",
@@ -4414,7 +4408,7 @@ var Profile = function Profile() {
                     className: "col-sm-3",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
                       className: "mb-0",
-                      children: "Phone"
+                      children: window.locale === 'mm' ? 'ဖုန်းနံပါတ်' : 'Phone'
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                     className: "col-sm-9",
@@ -4429,7 +4423,7 @@ var Profile = function Profile() {
                     className: "col-sm-3",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
                       className: "mb-0",
-                      children: "City"
+                      children: window.locale === 'mm' ? 'မြို့' : 'City'
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                     className: "col-sm-9",
@@ -4444,7 +4438,7 @@ var Profile = function Profile() {
                     className: "col-sm-3",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
                       className: "mb-0",
-                      children: "Postal Code"
+                      children: window.locale === 'mm' ? 'စာတိုက်အမှတ်' : 'Postal Code'
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                     className: "col-sm-9",
@@ -4459,7 +4453,7 @@ var Profile = function Profile() {
                     className: "col-sm-3",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
                       className: "mb-0",
-                      children: "Address"
+                      children: window.locale === 'mm' ? 'လိပ်စာ' : 'Address'
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                     className: "col-sm-9",
@@ -4474,13 +4468,13 @@ var Profile = function Profile() {
               href: "/logout",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
                 className: "btn btn-danger ms-2 float-end",
-                children: "Log out"
+                children: window.locale === 'mm' ? 'ထွက်ရန်' : 'Log out'
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
               href: '/edit-user_info/' + user_id,
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
                 className: "btn btn-primary float-end",
-                children: "Edit"
+                children: window.locale === 'mm' ? 'ပြင်ဆင်ရန်' : 'Edit'
               })
             })]
           })]

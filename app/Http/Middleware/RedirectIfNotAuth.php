@@ -17,7 +17,7 @@ class RedirectIfNotAuth
     public function handle(Request $request, Closure $next)
     {
         if (!auth()->check()) {
-            return redirect('/')->with('error', "Please login first");
+            return redirect('/login')->with('error', "Please login first");
         }
         return $next($request);
     }

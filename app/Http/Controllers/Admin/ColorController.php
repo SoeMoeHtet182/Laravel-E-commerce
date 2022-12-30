@@ -16,7 +16,7 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $data = Color::latest()->paginate(4);
+        $data = Color::latest()->paginate(5);
         return view('admin.color.index', ['colors' => $data]);
     }
 
@@ -45,7 +45,7 @@ class ColorController extends Controller
         $color->name = request()->name;
         $color->slug = Str::slug(request()->name) . uniqid();
         $color->save();
-        return redirect('/admin/color')->with('success', 'Created successfully');
+        return redirect()->back()->with('success', 'Created successfully');
     }
 
     /**

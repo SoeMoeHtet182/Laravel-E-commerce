@@ -26,7 +26,7 @@
                             <b class="text-muted mb-4">{{ $user->level->level }}</b>
                             <div class="d-flex justify-content-center m-2" id='change-password'>
                                 <button class="btn btn-outline-primary" disabled>
-                                    <a to='/change-password'>Change Password</a>
+                                    <a to='/change-password'>{{ __('site.change_psw') }}</a>
                                 </button>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Full Name</p>
+                                        <p class="mb-0">{{ __('site.name') }}</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">
@@ -55,7 +55,7 @@
                                 <hr />
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Display Name</p>
+                                        <p class="mb-0">{{ __('site.d_name') }} </p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">
@@ -66,7 +66,7 @@
                                 <hr />
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Email</p>
+                                        <p class="mb-0">{{ __('site.email') }}</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">
@@ -77,7 +77,7 @@
                                 <hr />
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Phone</p>
+                                        <p class="mb-0">{{ __('site.phone') }}</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">
@@ -88,7 +88,7 @@
                                 <hr />
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Address</p>
+                                        <p class="mb-0">{{ __('site.address') }}</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">
@@ -99,7 +99,7 @@
                                 <hr />
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">City</p>
+                                        <p class="mb-0">{{ __('site.city') }}</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">
@@ -110,7 +110,7 @@
                                 <hr />
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Postal Code</p>
+                                        <p class="mb-0">{{ __('site.postal') }} </p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">
@@ -120,8 +120,8 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" value="Update" class="btn btn-primary float-end" />
-                        <a href={{ url()->previous() }} class="btn btn-dark float-end me-3">Back</a>
+                        <input type="submit" value="{{ __('site.update') }}" class="btn btn-primary float-end" />
+                        <a href={{ url()->previous() }} class="btn btn-dark float-end me-3">{{ __('site.back') }}</a>
                     </form>
                 </div>
             </div>

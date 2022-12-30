@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductLike;
 
 class HomeApiController extends Controller
 {
@@ -15,6 +16,7 @@ class HomeApiController extends Controller
         foreach ($productByCategory as $k => $v) {
             $productByCategory[$k]->product = Category::find($v->id)->product()->take(4)->get();
         }
+
         return response()->json([
             'success' => true,
             'data' => [

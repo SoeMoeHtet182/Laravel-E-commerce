@@ -8,7 +8,6 @@
             <a href="{{ url('/admin/product') }}"><button class="btn btn-dark">Products</button></a>
             <hr>
             <table class="table text-center table-striped">
-
                 <thead>
                     <tr>
                         <th class="col-3">Name</th>
@@ -49,6 +48,7 @@
                         </tr>
                     @endforeach
                 </tbody>
+                <div>{{ $product->links }}</div>
             </table>
         </div>
     </div>

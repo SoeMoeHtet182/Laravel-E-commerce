@@ -3485,7 +3485,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var ViewAndLike = function ViewAndLike(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.like),
     _useState2 = _slicedToArray(_useState, 2),
@@ -3497,7 +3496,8 @@ var ViewAndLike = function ViewAndLike(props) {
       $('.fa-heart').css('color', res.data.css);
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "text-black",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "d-inline me-2",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
@@ -3681,7 +3681,7 @@ function ProductDetail() {
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
                           src: d.image_url,
                           className: "d-block m-auto",
-                          width: "304px",
+                          width: "320px",
                           height: "100%",
                           style: {
                             objectFit: 'fill'
@@ -3754,15 +3754,15 @@ function ProductDetail() {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
                   children: product.description
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                  children: [product.total_quantity, " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                  children: [product.total_quantity, " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
                     className: "text-dark",
-                    children: " left on stock"
+                    children: [" ", window.locale === 'mm' ? 'ခု ကျန်သေးသည်' : 'left on stock']
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                   className: "",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("label", {
                     htmlFor: "quantity",
-                    children: "Quantity:"
+                    children: [window.locale === 'mm' ? 'ပမာဏ' : 'Quantity', ":"]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
                     name: "quantity",
                     type: "number",
@@ -3789,7 +3789,7 @@ function ProductDetail() {
                       addToCart();
                     },
                     disabled: cartLoader,
-                    children: [cartLoader && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Component_SmallSpinner__WEBPACK_IMPORTED_MODULE_1__["default"], {}), "Add to Cart"]
+                    children: [cartLoader && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Component_SmallSpinner__WEBPACK_IMPORTED_MODULE_1__["default"], {}), " ", window.locale === 'mm' ? '‌ဈေးခြင်းထဲ ထည့်မည်' : 'Add to Cart']
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                   className: "down-content",
@@ -3797,24 +3797,24 @@ function ProductDetail() {
                     className: "categories",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("small", {
                       className: "d-block fw-bold",
-                      children: ["Category:", product.category.map(function (d) {
+                      children: [" ", window.locale === 'mm' ? '‌အမျိုးအစား' : 'Category', ":", product.category.map(function (d) {
                         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
                           className: "d-inline",
-                          children: [" ", d.name]
+                          children: [" ", window.locale === 'mm' ? d.mm_name : d.name, ":"]
                         }, d.id);
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("small", {
                       className: "d-block fw-bold",
-                      children: ["Brand:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
+                      children: [window.locale === 'mm' ? 'တံဆိပ်' : 'Brand', ":", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
                         className: "d-inline",
                         children: [" ", product.brand.name, " "]
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("small", {
                       className: "d-block fw-bold",
-                      children: ["Color:", product.color.map(function (d) {
+                      children: [window.locale === 'mm' ? 'အရောင်' : 'Color', ":", product.color.map(function (d) {
                         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
                           className: "d-inline",
-                          children: [" ", d.name]
+                          children: [" ", d.name, ","]
                         }, d.id);
                       })]
                     })]
@@ -3843,7 +3843,7 @@ function ProductDetail() {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                   className: "line-dec"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
-                  children: "You May Also Like"
+                  children: window.locale === 'mm' ? 'သင်ကြိုက်နှစ်သက်နိုင်သည့် အခြားအရာများ' : 'You May Also Like'
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -3859,27 +3859,31 @@ function ProductDetail() {
                     },
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
                       src: d.image_url,
-                      className: "card-img-top",
-                      height: "228.5px"
+                      style: {
+                        height: '200px'
+                      }
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                       className: "card-body",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                         className: "card-text text-nowrap overflow-hidden",
                         style: styles.card,
                         children: d.name
-                      }), d.discount_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
+                      }), d.discount_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
+                        className: "mt-2",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+                          className: "text-primary",
                           style: styles.lineTrough,
                           children: ["$", d.sale_price]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
-                          className: "d-inline",
-                          children: [" $", d.sale_price - d.discount_price, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("b", {
-                            className: "text-danger ms-3",
-                            children: [(d.discount_price / d.sale_price * 100).toPrecision(2), "%off"]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+                          className: "mx-2",
+                          children: ["$", d.sale_price - d.discount_price, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("b", {
+                            className: "text-danger ms-2",
+                            children: [(d.discount_price / d.sale_price * 100).toPrecision(2), "% off"]
                           })]
                         })]
                       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
+                          className: "mt-2 text-primary",
                           children: ["$", d.sale_price]
                         })
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Component_ViewAndLike__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -3980,7 +3984,7 @@ function Review(_ref) {
       className: "mt-4",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("small", {
         className: "d-block fw-bold",
-        children: "Reviews"
+        children: window.locale === 'mm' ? 'မှတ်ချက်များ' : 'Reviews'
       }), reviewList.map(function (d) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "card mt-2 p-2",
@@ -4015,7 +4019,7 @@ function Review(_ref) {
           className: "card p-3",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
             className: "card-title",
-            children: "Make Review"
+            children: window.locale === 'mm' ? 'မှတ်ချက်ပြုရန်' : 'Make Review'
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_star_ratings__WEBPACK_IMPORTED_MODULE_1__["default"], {
             rating: rating,
             starDimension: "28px",
@@ -4030,7 +4034,7 @@ function Review(_ref) {
               value: comment,
               rows: 4,
               className: "form-control mt-1",
-              placeholder: "Enter review",
+              placeholder: window.locale === 'mm' ? 'မှတ်ချက်ရေးရန်' : 'Enter Review',
               onChange: function onChange(e) {
                 setComment(e.target.value);
               }
@@ -4040,7 +4044,7 @@ function Review(_ref) {
                 makeReview();
               },
               disabled: disabledReview,
-              children: "Review"
+              children: window.locale === 'mm' ? 'မှတ်ချက်ပြုမည်' : 'Review'
             })]
           })]
         })]

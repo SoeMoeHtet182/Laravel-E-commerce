@@ -32,9 +32,12 @@ return [
     'address' => 'Address',
     'password' => 'Password',
     'c_password' => 'Confirm Password',
+    'change_psw' => 'Change Password',
     'subject' => 'Subject',
     'message' => 'Write message here....',
     'send_message' => 'SEND MESSAGE',
     'haveAccount' => "Don't have an account?",
     'AhaveAccount' => 'Do you already have an account?',
+    'update' => 'Update',
+    'back' => 'Back'
 ];

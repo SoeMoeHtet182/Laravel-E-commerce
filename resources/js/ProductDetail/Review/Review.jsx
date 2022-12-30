@@ -29,7 +29,7 @@ export default function Review({review}) {
     return (
         <>
             <div className='mt-4'>
-                <small className='d-block fw-bold'>Reviews</small>
+                <small className='d-block fw-bold'>{window.locale === 'mm' ? 'မှတ်ချက်များ' : 'Reviews'}</small>
                 {reviewList.map(d => (
                     <div className='card mt-2 p-2' key={d.id}>
                         <div className='row'>
@@ -54,7 +54,7 @@ export default function Review({review}) {
                         {loader && <Spinner />}
                         {!loader && (
                             <div className='card p-3'>
-                            <h5 className='card-title'>Make Review</h5>
+                            <h5 className='card-title'>{window.locale === 'mm' ? 'မှတ်ချက်ပြုရန်' : 'Make Review'}</h5>
                             <StarRatings
                                 rating={rating}
                                 starDimension="28px"
@@ -68,13 +68,13 @@ export default function Review({review}) {
                                     value={comment}
                                     rows={4}
                                     className='form-control mt-1'
-                                    placeholder='Enter review'
+                                    placeholder={window.locale === 'mm' ? 'မှတ်ချက်ရေးရန်' : 'Enter Review'}
                                     onChange={(e) => {setComment(e.target.value)}}
                                 ></textarea>
                                 <button className='btn btn-primary btn-dark mt-3 float-end'
                                     onClick={() => { makeReview() }}
                                     disabled={disabledReview}
-                                >Review</button>
+                                >{window.locale === 'mm' ? 'မှတ်ချက်ပြုမည်' : 'Review'}</button>
                             </div>
                         </div>
                         )}

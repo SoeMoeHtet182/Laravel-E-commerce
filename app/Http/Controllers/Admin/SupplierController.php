@@ -15,7 +15,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $data = Supplier::latest()->paginate(4);
+        $data = Supplier::latest()->paginate(5);
         return view('admin.supplier.index', ['suppliers' => $data]);
     }
 
@@ -75,8 +75,11 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        $data = Supplier::where('id', $id)->first();
-        return view('admin.supplier.edit', ['supplier' => $data]);
+        $supplier = Supplier::where('id', $id)->first();
+        if (!$supplier) {
+            return redirect()->back()->with('Supplier not found');
+        }
+        return view('admin.supplier.edit', compact('supplier'));
     }
 
     /**

@@ -27,7 +27,6 @@ class ProductApiController extends Controller
             $css = 'black';
         }
 
-
         $product = Product::where('slug', $slug)
             ->with('review.user', 'brand', 'category', 'color', 'order.user', 'images')
             ->first();

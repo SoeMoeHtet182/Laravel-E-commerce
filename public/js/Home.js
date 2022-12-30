@@ -3455,7 +3455,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var ViewAndLike = function ViewAndLike(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.like),
     _useState2 = _slicedToArray(_useState, 2),
@@ -3467,7 +3466,8 @@ var ViewAndLike = function ViewAndLike(props) {
       $('.fa-heart').css('color', res.data.css);
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "text-black",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "d-inline me-2",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
@@ -3530,7 +3530,7 @@ function Home() {
     },
     cardImg: {
       maxWidth: '211px',
-      maxHeight: '235px'
+      height: '200px'
     },
     lineTrough: {
       display: 'inline',
@@ -3553,22 +3553,24 @@ function Home() {
     _useState8 = _slicedToArray(_useState7, 2),
     checkProduct = _useState8[0],
     setCheckProduct = _useState8[1];
-  var fetchProduct = function fetchProduct() {
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState10 = _slicedToArray(_useState9, 2),
+    likeCss = _useState10[0],
+    setLikeCss = _useState10[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_4__["default"].get('/api/home').then(function (d) {
       var _d$data$data = d.data.data,
         featuredProducts = _d$data$data.featuredProducts,
         productByCategory = _d$data$data.productByCategory;
       setFeaturedProducts(featuredProducts);
       setProductByCategory(productByCategory);
+      setLikeCss(d.data.css);
       setLoader(false);
     })["catch"](function (err) {
       setFeaturedProducts([]);
       setProductByCategory([]);
       setLoader(false);
     });
-  };
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetchProduct();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: [loader && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Component_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {}), !loader && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
@@ -3612,19 +3614,20 @@ function Home() {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                         className: "card-body",
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                          className: "card-text text-nowrap overflow-hidden",
+                          className: "card-text text-nowrap overflow-hidden text-black",
                           style: styles.card,
                           children: d.name
-                        }), d.discount_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h6", {
-                            className: "mt-2 text-primary",
+                        }), d.discount_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h6", {
+                          className: "mt-2",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+                            className: "text-primary",
                             style: styles.lineTrough,
                             children: ["$", d.sale_price]
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h6", {
-                            className: "d-inline",
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+                            className: "mx-2",
                             children: ["$", d.sale_price - d.discount_price, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("b", {
-                              className: "text-danger ms-3",
-                              children: [d.discount_price / d.sale_price * 100, "% off"]
+                              className: "text-danger ms-2",
+                              children: [(d.discount_price / d.sale_price * 100).toPrecision(2), "% off"]
                             })]
                           })]
                         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
@@ -3658,7 +3661,7 @@ function Home() {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
                     href: "products?category=".concat(d.slug),
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
-                      children: d.name
+                      children: window.locale === 'mm' ? d.mm_name : d.name
                     })
                   })]
                 })
@@ -3681,30 +3684,32 @@ function Home() {
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
                             src: d.image_url,
                             alt: "Item 1",
-                            className: "card-img-top",
                             style: styles.cardImg
                           })
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                           className: "card-body",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                            className: "card-text text-nowrap overflow-hidden",
+                            className: "card-text text-nowrap overflow-hidden text-black",
                             style: styles.card,
                             children: d.name
-                          }), d.discount_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h6", {
-                              className: "mt-2 text-primary",
+                          }), d.discount_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h6", {
+                            className: "mt-2",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+                              className: "text-primary",
                               style: styles.lineTrough,
                               children: ["$", d.sale_price]
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h6", {
-                              className: "d-inline",
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+                              className: "mx-2",
                               children: ["$", d.sale_price - d.discount_price, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("b", {
-                                className: "text-danger ms-3",
-                                children: [d.discount_price / d.sale_price * 100, "% off"]
+                                className: "text-danger ms-2",
+                                children: [(d.discount_price / d.sale_price * 100).toPrecision(2), "% off"]
                               })]
                             })]
-                          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h6", {
-                            className: "mt-2 text-primary",
-                            children: ["$", d.sale_price]
+                          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h6", {
+                              className: "mt-2 text-primary",
+                              children: ["$", d.sale_price]
+                            })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Component_ViewAndLike__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             view: d.view_count,
                             like: d.like_count,

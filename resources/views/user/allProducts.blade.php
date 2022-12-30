@@ -11,11 +11,6 @@
             margin-bottom: 10px
         }
 
-        .card-img {
-            max-width: '211px';
-            max-height: '235px';
-        }
-
         .card-text {
             color: black
         }
@@ -41,11 +36,16 @@
                     <div class="col-sm-12">
                         <div id="filters" class="button-group">
                             <form action="" class="d-inline-block">
-                                <button class='btn btn-primary' onclick="productFunction('all')">
-                                    <input type="hidden" name="product" id="product" />
+                                <input type="hidden" name="product" id="product" />
+                                <button
+                                    class='btn btn-primary {{ Str::contains(url()->full(), 'all') ? 'text-primary' : '' }}'
+                                    onclick="productFunction('all')">
                                     {{ __('site.all_products') }}
                                 </button>
-                                <button class="btn btn-primary" onclick="productFunction('new')">{{ __('site.new') }}
+                                <button
+                                    class="btn btn-primary {{ Str::contains(url()->full(), 'new') ? 'text-primary' : '' }}"
+                                    onclick="productFunction('new')">
+                                    {{ __('site.new') }}
                                 </button>
                             </form>
                             <form action="" class="d-inline-block">
@@ -65,7 +65,7 @@
                                 </select>
                                 <a id='search-btn' href="{{ url('/products') }}"
                                     class='btn btn-dark float-end'>{{ __('site.clear') }}</a>
-                                <input id="clear-btn" type="submit" class="btn btn-dark me-2 float-end"
+                                <input id="clear-btn" type="submit" class="btn btn-dark me-1 float-end"
                                     value="{{ __('site.search') }}" />
                                 <div id="search-bar" class="input-group float-end ms-2" style="width: 200px">
                                     <span class="input-group-text text-body"><i class="fas fa-search"
@@ -94,7 +94,7 @@
                         <a href="{{ url('/products/detail/' . $product->slug) }}">
                             <div class='card p-3 m-2'>
                                 <div class="card-img-div">
-                                    <img src="{{ $product->image_url }}" alt="Item 1" class=card-img' />
+                                    <img src="{{ $product->image_url }}" style="width: 100%; height: 235px" />
                                 </div>
                                 <div class='card-body'>
                                     <h6 class='card-text text-nowrap overflow-hidden'>{{ $product->name }}</h6>

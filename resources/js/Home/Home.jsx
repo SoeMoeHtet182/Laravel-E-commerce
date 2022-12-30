@@ -12,7 +12,7 @@ export default function Home() {
         },
         cardImg: {
             maxWidth: '211px',
-            maxHeight: '235px'
+            height: '200px'
         },
         lineTrough: {
             display: 'inline',
@@ -23,25 +23,24 @@ export default function Home() {
     const [productByCategory, setProductByCategory] = useState([]);
     const [loader, setLoader] = useState(true);
     const [checkProduct, setCheckProduct] = useState(false);
+    const [likeCss, setLikeCss] = useState('');
 
-    const fetchProduct = () => {
-        axios.get('/api/home')
-            .then(d => {
-                const { featuredProducts, productByCategory } = d.data.data;
-                setFeaturedProducts(featuredProducts);
-                setProductByCategory(productByCategory);
-                setLoader(false);
-            })
-            .catch(err => {
-                setFeaturedProducts([]);
-                setProductByCategory([]);
-                setLoader(false);
-            });
-    };
+        useEffect(() => {
+            axios.get('/api/home')
+                .then(d => {
+                    const { featuredProducts, productByCategory } = d.data.data;
+                    setFeaturedProducts(featuredProducts);
+                    setProductByCategory(productByCategory);
+                    setLikeCss(d.data.css);
+                    setLoader(false);
+                })
+                .catch(err => {
+                    setFeaturedProducts([]);
+                    setProductByCategory([]);
+                    setLoader(false);
+                });
+        },[]);
 
-    useEffect(() => {
-        fetchProduct();
-    }, []);
   return (
       <>
           {loader && <Spinner />}
@@ -67,19 +66,19 @@ export default function Home() {
                                                         <img src={d.image_url} alt="Item 1" className='card-img-top' style={styles.cardImg}/>
                                                     </div>
                                                     <div className='card-body'>
-                                                        <div className='card-text text-nowrap overflow-hidden' style={styles.card}>{ d.name }</div>
+                                                        <div className='card-text text-nowrap overflow-hidden text-black' style={styles.card}>{ d.name }</div>
                                                         {d.discount_price ? (
-                                                            <>
-                                                                <h6 className='mt-2 text-primary' style={styles.lineTrough}>
+                                                            <h6 className='mt-2'>
+                                                                <span className='text-primary' style={styles.lineTrough}>
                                                                     ${d.sale_price}
-                                                                </h6>
-                                                                <h6 className='d-inline'>
+                                                                </span>
+                                                                <span className='mx-2'>
                                                                     ${d.sale_price - d.discount_price}
-                                                                    <b className='text-danger ms-3'>
-                                                                        {d.discount_price / d.sale_price * 100}% off
+                                                                    <b className='text-danger ms-2'>
+                                                                        {(d.discount_price / d.sale_price * 100).toPrecision(2)}% off
                                                                     </b>
-                                                                </h6>
-                                                            </>) : (
+                                                                </span>
+                                                            </h6>) : (
                                                                 <>
                                                                     <h6 className='mt-2 text-primary'>${d.sale_price}</h6>
                                                                 </>
@@ -99,7 +98,7 @@ export default function Home() {
                                     <div className="col-md-12">
                                         <div className="section-heading">
                                             <div className="line-dec" />
-                                            <a href={`products?category=${d.slug}`}><h1>{ d.name }</h1></a>
+                                            <a href={`products?category=${d.slug}`}><h1>{ window.locale === 'mm' ? d.mm_name : d.name  }</h1></a>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
@@ -108,22 +107,25 @@ export default function Home() {
                                                 <a href={`/products/detail/${d.slug}`} className="col" key={d.slug}>
                                                     <div className='card p-3 m-2'>
                                                         <div style={{height: '235px',alignItems: 'center', display: 'grid'}}>
-                                                            <img src={d.image_url} alt="Item 1" className='card-img-top' style={styles.cardImg}/>
+                                                            <img src={d.image_url} alt="Item 1"  style={styles.cardImg}/>
                                                         </div>
                                                         <div className='card-body'>
-                                                            <div className='card-text text-nowrap overflow-hidden' style={styles.card}>{ d.name }</div>
-                                                            {d.discount_price ? (<>
-                                                                <h6 className='mt-2 text-primary' style={styles.lineTrough}>
+                                                            <div className='card-text text-nowrap overflow-hidden text-black' style={styles.card}>{ d.name }</div>
+                                                            {d.discount_price ? (
+                                                            <h6 className='mt-2'>
+                                                                <span className='text-primary' style={styles.lineTrough}>
                                                                     ${d.sale_price}
-                                                                </h6>
-                                                                <h6 className='d-inline'>
+                                                                </span>
+                                                                <span className='mx-2'>
                                                                     ${d.sale_price - d.discount_price}
-                                                                    <b className='text-danger ms-3'>{d.discount_price / d.sale_price * 100}% off
+                                                                    <b className='text-danger ms-2'>
+                                                                        {(d.discount_price / d.sale_price * 100).toPrecision(2)}% off
                                                                     </b>
-                                                                </h6>
-                                                            </>
-                                                            ) : (
-                                                                <h6 className='mt-2 text-primary'>${d.sale_price}</h6>
+                                                                </span>
+                                                            </h6>) : (
+                                                                <>
+                                                                    <h6 className='mt-2 text-primary'>${d.sale_price}</h6>
+                                                                </>
                                                             )}
                                                             <ViewAndLike view={d.view_count} like={d.like_count} css={ likeCss} />
                                                         </div>

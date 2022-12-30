@@ -15,7 +15,7 @@ export default function ProductDetail() {
         lineTrough: {
             display: 'inline',
             textDecoration: 'line-through black 2px'
-        }
+        },
     }
     const [product, setProduct] = useState([]);
     const [randomProducts, setRandomProducts] = useState([]);
@@ -23,6 +23,7 @@ export default function ProductDetail() {
     const [quantity, setQuantity] = useState(1);
     const [cartLoader, setCartLoader] = useState(false);
     const [likeCss, setLikeCss] = useState('');
+
     if (window.auth) {
         const user = window.auth;
         useEffect(() => {
@@ -88,7 +89,7 @@ export default function ProductDetail() {
                                         <div className="carousel-inner" style={styles.whAuto}>
                                             {product.images.map((d,index) => (
                                                 <div className={`${index == 0 && 'active'} carousel-item`} style={styles.whAuto} key={d.id}>
-                                                <img src={d.image_url} className="d-block m-auto" width='304px' height='100%' style={{objectFit: 'fill'}}/>
+                                                <img src={d.image_url} className="d-block m-auto" width='320px' height='100%' style={{objectFit: 'fill'}}/>
                                             </div>
                                             ))}
                                         </div>
@@ -119,31 +120,31 @@ export default function ProductDetail() {
                                             </h6></>)
                                         : (<><h6>${ product.sale_price }</h6></>)}
                                     <p>{product.description}</p>
-                                    <span>{product.total_quantity} <span className='text-dark'> left on stock</span></span>
+                                    <span>{product.total_quantity} <span className='text-dark'> { window.locale === 'mm' ? 'ခု ကျန်သေးသည်' : 'left on stock' }</span></span>
                                     <div className=''>
-                                        <label htmlFor="quantity">Quantity:</label>
+                                        <label htmlFor="quantity">{ window.locale === 'mm' ? 'ပမာဏ' :'Quantity' }:</label>
                                         <input name="quantity" type="number" min="1" className="quantity-text" id="quantity"
                                             onFocus={() => { if (this.value == '1') { this.value = ''; } }} onBlur={() => { if (this.value == '') { this.value = '1'; } }}
                                             onChange={e => setQuantity(e.target.value)} defaultValue={1} />
                                         <a className="btn btn-primary text-white ms-3" onClick={() => { addToCart() }} disabled={cartLoader}>
                                             {cartLoader && (
                                                 <SmallSpinner/>
-                                            )}Add to Cart
+                                            )} {window.locale === 'mm' ? '‌ဈေးခြင်းထဲ ထည့်မည်' :'Add to Cart'}
                                         </a>
                                     </div>
                                     <div className="down-content">
                                         <div className="categories">
-                                            <small className='d-block fw-bold'>Category:
+                                            <small className='d-block fw-bold'> {window.locale === 'mm' ? '‌အမျိုးအစား' :'Category'}:
                                                 {product.category.map(d => (
-                                                    <h6 className='d-inline' key={d.id}> { d.name }</h6>
+                                                    <h6 className='d-inline' key={d.id}> {window.locale === 'mm' ? d.mm_name : d.name}:</h6>
                                                 ))}
                                             </small>
-                                            <small className='d-block fw-bold'>Brand:
+                                            <small className='d-block fw-bold'>{window.locale === 'mm' ? 'တံဆိပ်' :'Brand'}:
                                                 <h6 className='d-inline'> {product.brand.name} </h6>
                                             </small>
-                                            <small className='d-block fw-bold'>Color:
+                                            <small className='d-block fw-bold'>{window.locale === 'mm' ? 'အရောင်' :'Color'}:
                                                 {product.color.map(d => (
-                                                    <h6 className='d-inline' key={d.id}> { d.name }</h6>
+                                                    <h6 className='d-inline' key={d.id}> { d.name },</h6>
                                                 ))}
                                             </small>
                                         </div>
@@ -163,31 +164,36 @@ export default function ProductDetail() {
                             <div className="col-md-12">
                                 <div className="section-heading">
                                     <div className="line-dec" />
-                                    <h1>You May Also Like</h1>
+                                    <h1>{ window.locale === 'mm' ? 'သင်ကြိုက်နှစ်သက်နိုင်သည့် အခြားအရာများ' : 'You May Also Like' }</h1>
                                 </div>
                             </div>
                             <div className="col-md-12">
                                 <div className='d-flex justify-content-between'>
                                 {randomProducts.map(d => (
                                     <div className='card p-3' style={{ width: "262.5px", height: '343px' }} key={d.slug}>
-                                        <img src={d.image_url} className="card-img-top" height='228.5px' />
+                                        <img src={d.image_url} style={{height: '200px'}} />
                                         <div className='card-body'>
                                             <div className='card-text text-nowrap overflow-hidden' style={styles.card}>{ d.name }</div>
                                             {d.discount_price ? (
+                                                <h6 className='mt-2'>
+                                                <span className='text-primary' style={styles.lineTrough}>
+                                                    ${d.sale_price}
+                                                </span>
+                                                <span className='mx-2'>
+                                                    ${d.sale_price - d.discount_price}
+                                                    <b className='text-danger ms-2'>
+                                                        {(d.discount_price / d.sale_price * 100).toPrecision(2)}% off
+                                                    </b>
+                                                </span>
+                                            </h6>) : (
                                                 <>
-                                                    <h6 style={styles.lineTrough}>${d.sale_price}</h6>
-                                                    <h6 className='d-inline'> ${d.sale_price - d.discount_price}
-                                                        <b className='text-danger ms-3'>{(d.discount_price / d.sale_price * 100).toPrecision(2)}%off</b>
-                                                    </h6>
+                                                    <h6 className='mt-2 text-primary'>${d.sale_price}</h6>
                                                 </>
-                                            ) : (
-                                                <>
-                                                    <h6>${d.sale_price}</h6>
-                                                </>)}
+                                            )}
                                             <ViewAndLike view={d.view_count} like={d.like_count} css={ likeCss} />
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
                                 </div>
                             </div>
                         </div>

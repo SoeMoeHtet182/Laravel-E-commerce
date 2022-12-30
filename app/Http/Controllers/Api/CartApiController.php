@@ -50,7 +50,7 @@ class CartApiController extends Controller
         ]);
     }
 
-    // ui cart
+    // show cart
     public function cart($id)
     {
         $user = User::where('id', $id)->first();

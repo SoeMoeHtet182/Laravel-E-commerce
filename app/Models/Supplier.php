@@ -9,7 +9,7 @@ class Supplier extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image', 'desctiption'];
+    protected $fillable = ['name', 'image', 'description'];
 
     public function transition()
     {

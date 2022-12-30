@@ -7,7 +7,7 @@
         <a href="{{ route('supplier.index') }}" class="btn btn-dark">All Suppliers</a>
     </div>
     <hr>
-    <form action="{{ route('supplier.update', $supplier->slug) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('supplier.update', $supplier->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         @if ($errors->has('name'))
@@ -22,10 +22,13 @@
             <input type="file" name="image" class="form-control" />
             <img src="{{ asset('/images/' . $supplier->image) }}" class="img-thumbnail" style="width: 100px" />
         </div>
+        @if ($errors->has('description'))
+            <div class="alert alert-danger">{{ $errors->first('description') }}</div>
+        @endif
         <div class="form-group">
             <label for="">Enter Description</label>
-            <textarea name="description" class="form-control"></textarea>
+            <textarea name="description" class="form-control">{{ $supplier->description }}</textarea>
         </div>
-        <input type="submit" value="Update" class="btn btn-primary" />
+        <input type="submit" value="Update" class="btn btn-primary float-end" />
     </form>
 @endsection

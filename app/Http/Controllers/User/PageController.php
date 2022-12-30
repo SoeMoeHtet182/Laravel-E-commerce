@@ -32,7 +32,7 @@ class PageController extends Controller
         $category = Category::all();
 
         if ($request->product == 'all') {
-            $products = Product::orderBy('id', 'desc');
+            $products = Product::orderBy('id', 'ASC');
         } else {
             $products = Product::latest();
         }

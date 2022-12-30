@@ -96,7 +96,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="logo">
-                        <img src="/web_assets/images/header-logo.png" alt="" />
+                        <h2 class="my-5" style="color: #f56e07">One PIECE</h2>
                     </div>
                 </div>
                 <div class="col-md-12">

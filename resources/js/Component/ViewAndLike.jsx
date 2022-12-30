@@ -11,14 +11,14 @@ const ViewAndLike = (props) => {
         })
     }
   return (
-    <>
+    <div className='text-black'>
         <div className='d-inline me-2'><i className="fa-solid fa-eye"></i> { props.view }</div>
         <div className='d-inline'>
               <i className="fa-regular fa-heart me-2" style={{ 'color': props.css }}
                   onClick={() => { window.auth && likeProduct() }}></i>
                {like}
         </div>
-    </>
+    </div>
   )
 }
 

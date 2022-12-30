@@ -47,7 +47,7 @@ class ProfileApiController extends Controller
             ]);
             return response([
                 'message' => true,
-                'data' => $user->name
+                'data' => $user->display_name
             ]);
         }
     }

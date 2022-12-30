@@ -24,18 +24,19 @@ const Order = () => {
         {loader && <Spinner />}
         {!loader && (
           <>
-            {displayOff && (<div className='alert alert-secondary text-center fs-5'>You have no product in order list</div>)}
+            {displayOff && (<div className='alert alert-secondary text-center fs-5'>
+                {window.locale === 'mm' ? 'သင်၏ အော်ဒါစာရင်းထဲတွင် ဘာမှ မရှိပါ' : 'You have no product in order list'}</div>)}
             {!displayOff && (
               <>
                   <table className='table table-striped bg-white text-center' id='order-table'>
                     <thead>
                       <tr>
-                        <th>No.</th>
-                        <th width={'15%'}>Name</th>
-                        <th>Image</th>
-                        <th>Total Quantity</th>
-                        <th>Total Price</th>
-                        <th>Status</th>
+                        <th>{window.locale === 'mm' ? 'အမှတ်စဥ်' :'No.'}</th>
+                        <th width={'15%'}>{window.locale === 'mm' ? 'အမည်':'Name'}</th>
+                        <th>{window.locale === 'mm' ? 'ဓာတ်ပုံ' : 'Image'}</th>
+                        <th>{window.locale === 'mm' ? 'စုစုပေါင်းပမာဏ' : 'Total Quantity'}</th>
+                        <th>{window.locale === 'mm' ? 'စုစုပေါင်းငွေ': 'Total Price'}</th>
+                        <th>{window.locale === 'mm' ? 'အခြေအနေ' : 'Status'}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -47,9 +48,9 @@ const Order = () => {
                           <td>{ d.total_quantity}</td>
                           <td>{d.total_amount} $</td>
                               <td>
-                                  {d.status == 'pending' && (<span className='badge bg-warning'>Pending</span>)}
-                                  {d.status == 'success' && (<span className='badge bg-success'>Success</span>)}
-                                  {d.status == 'cancel' && (<span className='badge bg-danger'>Cancel</span>)}
+                                  {d.status == 'pending' && (<span className='badge bg-warning'>{window.locale === 'mm' ? 'စောင့်ဆိုင်းဆဲ' :'Pending'}</span>)}
+                                  {d.status == 'success' && (<span className='badge bg-success'>{window.locale === 'mm' ? 'အောင်မြင်သည်':'Success'}</span>)}
+                                  {d.status == 'cancel' && (<span className='badge bg-danger'>{window.locale === 'mm' ? 'ပယ်ဖျက်ခဲ့သညါ)' :'Cancel'}</span>)}
                                 </td>
                         </tr>
                       ))}

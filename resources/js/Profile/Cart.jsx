@@ -93,20 +93,21 @@ const Cart = () => {
           {loader && <Spinner />}
           {!loader && (
             <>
-              {displayOff && (<div className='alert alert-secondary text-center fs-5'>You have no product in cart</div>)}
+              {displayOff && (<div className='alert alert-secondary text-center fs-5'>
+                {window.locale === 'mm' ? 'သင်၏ ဈေးခြင်းထဲတွင် ဘာမှ မရှိပါ' : 'You have no product in cart'}</div>)}
               {!displayOff && (
                 <>
                   <table className='table table-striped bg-white text-center align-middle' id='cart-table'>
                     <thead className='py-3'>
                       <tr>
-                        <th>No.</th>
-                        <th>Name</th>
-                        <th className='swapCol1'>Image</th>
-                        <th className='swapCol1'>Quantity</th>
-                        <th className='swapCol1'>Sale price</th>
-                        <th className='swapCol2'>Total price</th>
-                        <th className='swapCol2'>Add/Remove</th>
-                        <th className='swapCol2'>Delete</th>
+                      <th>{window.locale === 'mm' ? 'အမှတ်စဥ်' :'No.'}</th>
+                        <th width={'15%'}>{window.locale === 'mm' ? 'အမည်':'Name'}</th>
+                        <th>{window.locale === 'mm' ? 'ဓာတ်ပုံ' : 'Image'}</th>
+                        <th>{window.locale === 'mm' ? 'ပမာဏ' : 'Total Quantity'}</th>
+                        <th>{window.locale === 'mm' ? 'ရောင်းဈေး': 'Sale Price'}</th>
+                        <th>{window.locale === 'mm' ? 'စုစုပေါင်းငွေ': 'Total Price'}</th>
+                        <th>{window.locale === 'mm' ? 'တိုးမည်/လျှော့မည်' : 'Add/Remove'}</th>
+                        <th>{window.locale === 'mm' ? 'ဖျက်မည်': 'Delete'}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -130,7 +131,8 @@ const Cart = () => {
                               onClick={() => { updateQty(d.id, 'add') }}
                             >+</button>
                             <button className='btn btn-secondary btn-sm ms-2'
-                              onClick={() => {updateCartBySave(d.id,d.total_quantity,d.total_price)}}>Save</button>
+                              onClick={() => {updateCartBySave(d.id,d.total_quantity,d.total_price)}}>
+                                {window.locale === 'mm' ? 'သိမ်းမည်' : 'Save'}</button>
                           </td>
                           <td className='swapCol2'>
                             <button className='btn btn-danger btn-sm' onClick={()=>{removeCart(d.id)}}>
@@ -142,7 +144,7 @@ const Cart = () => {
                     </tbody>
                     <tfoot className='p-2'>
                       <tr >
-                        <td colSpan={6}><b className='float-end'>Total:</b></td>
+                        <td colSpan={6}><b className='float-end'>{window.locale === 'mm' ? 'စုစုပေါင်းကျငွေ' : 'Total'}:</b></td>
                           <td colSpan={2}><TotalPrice /></td>
                       </tr>
                     </tfoot>
@@ -156,7 +158,7 @@ const Cart = () => {
       </div>
       {!displayOff && (
         <div className='float-end'>
-          <button className='btn btn-dark' onClick={()=>{updateOrder()}}>Order</button>
+          <button className='btn btn-dark' onClick={()=>{updateOrder()}}>{window.locale === 'mm' ? 'အော်ဒါတင်မည်' : 'Order'}</button>
         </div>
       )}
     </div>

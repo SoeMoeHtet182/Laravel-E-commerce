@@ -49,40 +49,40 @@ class DatabaseSeeder extends Seeder
             'role' => 'Developer'
         ]);
 
-        //category
-        $categories = ['T-Shirt', 'Shoes', 'Jeans', 'Mobile', 'Earphone', 'Electronic', 'Watch', 'Men', 'Women'];
-        foreach ($categories as $category) {
-            Category::create([
-                'slug' => Str::slug($category),
-                'name' => $category,
-                'mm_name' => ''
-            ]);
-        }
+        // //category
+        // $categories = ['T-Shirt', 'Shoes', 'Jeans', 'Mobile', 'Earphone', 'Electronic', 'Watch', 'Men', 'Women'];
+        // foreach ($categories as $category) {
+        //     Category::create([
+        //         'slug' => Str::slug($category),
+        //         'name' => $category,
+        //         'mm_name' => ''
+        //     ]);
+        // }
 
-        //brand
-        $brands = ['Calvin-Kelin', 'Gucci', 'Addias', 'Huawei', 'Samsung', 'Apple'];
-        foreach ($brands as $brand) {
-            Brand::create([
-                'slug' => Str::slug($brand),
-                'image' => '',
-                'name' => $brand
-            ]);
-        }
+        // //brand
+        // $brands = ['Calvin-Kelin', 'Gucci', 'Addias', 'Huawei', 'Samsung', 'Apple'];
+        // foreach ($brands as $brand) {
+        //     Brand::create([
+        //         'slug' => Str::slug($brand),
+        //         'image' => '',
+        //         'name' => $brand
+        //     ]);
+        // }
 
-        // color
-        $colors = ['White', 'Black', 'Red', 'Green', 'Blue', 'Violet'];
-        foreach ($colors as $color) {
-            Color::create([
-                'slug' => Str::slug($color),
-                'name' => $color
-            ]);
-        }
+        // // color
+        // $colors = ['White', 'Black', 'Red', 'Green', 'Blue', 'Violet'];
+        // foreach ($colors as $color) {
+        //     Color::create([
+        //         'slug' => Str::slug($color),
+        //         'name' => $color
+        //     ]);
+        // }
 
-        //supplier
-        Supplier::create([
-            'name' => 'supplierone',
-            'image' => 'supplier.png',
-            'description' => 'absdf'
-        ]);
+        // //supplier
+        // Supplier::create([
+        //     'name' => 'supplierone',
+        //     'image' => 'supplier.png',
+        //     'description' => 'absdf'
+        // ]);
     }
 }

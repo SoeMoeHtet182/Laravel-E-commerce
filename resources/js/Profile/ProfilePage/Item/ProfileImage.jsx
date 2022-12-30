@@ -42,7 +42,7 @@ const ProfileImage = () => {
         </div>
         <div>
             <a style={styles.uploadBtn}>
-                <label htmlFor="files"><small>Upload Image</small> </label>
+                <label htmlFor="files"><small>{window.locale === 'mm' ? 'ဓာတ်ပုံတင်ရန်' : 'Upload Image'}</small> </label>
                 <input id="files" hidden type="file" onChange={ (e) => {uploadImage(e)} } />
             </a>
         </div>
