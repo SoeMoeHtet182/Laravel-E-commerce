@@ -42,7 +42,7 @@
                 @foreach ($orders as $order)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $order->product->name }}</td>
+                        <td class="col-2 text-wrap">{{ $order->product->name }}</td>
                         <td><img src="{{ $order->product->image_url }}" width="80" /></td>
                         <td>{{ $order->total_quantity }}</td>
                         <td>{{ $order->total_amount }}</td>

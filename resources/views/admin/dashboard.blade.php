@@ -207,14 +207,11 @@
                                                 <h6 class="mb-1 text-dark text-sm">{{ $category->name }}</h6>
                                                 <span class="text-xs">{{ $category->product_count }} in stock,
                                                     <span class="font-weight-bold">
-                                                        @if (count($products))
-                                                            @foreach ($products as $p)
-                                                                <?php $soldItems[] = intval($p->soldAmount); ?>
-                                                                {{ array_sum($soldItems) }} +sold
-                                                            @endforeach
-                                                        @else
-                                                            0 sold
-                                                        @endif
+                                                        @foreach ($category->product as $p)
+                                                            <?php $soldItems[] = intval($p->soldAmount); ?>
+                                                        @endforeach
+                                                        + {{ array_sum($soldItems) }} sold
+                                                        <?php $soldItems = []; ?>
                                                     </span>
                                                 </span>
                                             </div>
@@ -264,7 +261,7 @@
         const icChart = document.getElementById('income-outcomeChart');
 
         new Chart(icChart, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: @json($days),
                 datasets: [{
@@ -290,7 +287,7 @@
         const cChart = document.getElementById('categoryChart');
 
         new Chart(cChart, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: @json($months),
                 datasets: [{
@@ -322,12 +319,13 @@
         new Chart(pChart, {
             type: 'pie',
             data: {
-                labels: @json($products),
+                labels: @json($products).map(k => k.name),
                 datasets: [{
-                    label: 'some',
+                    label: 'Sale in current month',
                     data: @json($dataForProducts),
                 }]
             },
         });
+        console.log(@json($dataForProducts))
     </script>
 @endsection
