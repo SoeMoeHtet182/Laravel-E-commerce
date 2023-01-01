@@ -7,7 +7,6 @@ use App\Models\ProductCart;
 use App\Models\ProductOrder;
 use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(UrlGenerator $url)
+    public function boot()
     {
         Paginator::useBootstrap();
         $data = Category::all();
@@ -44,8 +43,5 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('noti', $orderCount);
             }
         });
-        if (env('APP_ENV' == 'production')) {
-            $url->forceScheme('https');
-        }
     }
 }
