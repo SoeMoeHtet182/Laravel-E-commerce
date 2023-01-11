@@ -69,8 +69,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['adm
     Route::post('/edit-product_images/{id}', 'ProductController@updateEditImages');
 
     //product transaction
-    Route::get('/product-add/{slug}', 'ProductController@craeteProductAdd');
+    Route::get('/product-add/{slug}', 'ProductController@createProductAdd');
     Route::post('/product-add/{slug}', 'ProductController@storeProductAdd');
+    Route::get('product-remove/{slug}', 'ProductController@createProductRemove');
+    Route::post('product-remove/{slug}', 'ProductController@storeProductRemove');
     Route::get('/product-add-transaction', 'TransactionController@addTransaction');
     Route::get('/product-remove-transaction', 'TransactionController@removeTransaction');
 

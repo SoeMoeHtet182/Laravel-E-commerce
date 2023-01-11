@@ -3463,9 +3463,16 @@ var ViewAndLike = function ViewAndLike(props) {
   var likeProduct = function likeProduct() {
     axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('/api/like-product?product_slug=' + window.product_slug + '&user_id=' + window.auth.id).then(function (res) {
       setLike(res.data.data);
-      $('.fa-heart').css('color', res.data.css);
+      var product = document.getElementsByClassName(window.product_slug + ' fa-heart')[0];
+      product.style.color = res.data.css;
     });
   };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    window.auth ? axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('/api/like?product_slug=' + props.product + '&user_id=' + window.auth.id).then(function (res) {
+      var product = document.getElementsByClassName(props.product + ' fa-heart')[0];
+      product.style.color = res.data.css;
+    }) : '';
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "text-black",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -3476,10 +3483,7 @@ var ViewAndLike = function ViewAndLike(props) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "d-inline",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
-        className: "fa-regular fa-heart me-2",
-        style: {
-          'color': props.css
-        },
+        className: props.product ? props.product + " fa-regular fa-heart me-2" : "fa-regular fa-heart me-2",
         onClick: function onClick() {
           window.auth && likeProduct();
         }
@@ -3638,7 +3642,7 @@ function Home() {
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Component_ViewAndLike__WEBPACK_IMPORTED_MODULE_2__["default"], {
                           view: d.view_count,
                           like: d.like_count,
-                          css: likeCss
+                          product: d.slug
                         })]
                       })]
                     })
@@ -3713,7 +3717,7 @@ function Home() {
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Component_ViewAndLike__WEBPACK_IMPORTED_MODULE_2__["default"], {
                             view: d.view_count,
                             like: d.like_count,
-                            css: likeCss
+                            product: d.slug
                           })]
                         })]
                       })

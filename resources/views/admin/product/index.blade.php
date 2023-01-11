@@ -1,6 +1,14 @@
 @extends('admin.layout.master')
 {{-- For Page titles --}}
 @section('pageTitle', 'Product')
+@section('css')
+    <style>
+        .product .img-thumbnail {
+            width: 180px;
+            height: 160px;
+        }
+    </style>
+@endsection
 
 @section('content')
     <div class="d-inline me-2">
@@ -22,15 +30,15 @@
         </thead>
         <tbody class="table-group-divider">
             @foreach ($products as $product)
-                <tr>
+                <tr class="product">
                     <td class="ps-4">{{ $product->name }}</td>
                     <td class="ps-4">
-                        <img src="{{ asset('/images/' . $product->image) }}" width="200px" class="img-thumbnail" />
+                        <img src="{{ asset('/images/' . $product->image) }}" class="img-thumbnail" />
                     </td>
                     <td class="ps-4">{{ $product->total_quantity }}</td>
                     <td>
                         <a href="{{ url('/admin/product-add/' . $product->slug) }}" class="btn btn-warning">+</a>
-                        <a href="{{ url('/admin/product-remove') }}" class="btn btn-warning">-</a>
+                        <a href="{{ url('/admin/product-remove/' . $product->slug) }}" class="btn btn-warning">-</a>
                     </td>
                     <td>
                         <a href="{{ route('product.edit', $product->slug) }}" class="btn btn-primary small">Edit</a>

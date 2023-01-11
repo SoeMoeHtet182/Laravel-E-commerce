@@ -9,6 +9,7 @@ use App\Models\Color;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\ProductAddTransition;
+use App\Models\ProductRemoveTransition;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -224,7 +225,8 @@ class ProductController extends Controller
         return asset('/images/' . $file_name);
     }
 
-    public function craeteProductAdd($slug)
+    //strat product add and remove
+    public function createProductAdd($slug)
     {
         $product = Product::select('slug', 'name', 'total_quantity')->where('slug', $slug)->first();
         if (!$product) {
@@ -233,7 +235,7 @@ class ProductController extends Controller
 
         $supplier = Supplier::all();
 
-        return view('admin.product.create-product-add', compact('product', 'supplier'));
+        return view('admin.product.manage.add', compact('product', 'supplier'));
     }
 
     public function storeProductAdd(Request $request, $slug)
@@ -257,6 +259,40 @@ class ProductController extends Controller
         ]);
 
         return redirect('admin/product')->with('success', 'Added successfully');
+    }
+
+    public function createProductRemove($slug)
+    {
+        $product = Product::select('slug', 'name', 'total_quantity')->where('slug', $slug)->first();
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found');
+        }
+
+        $supplier = Supplier::all();
+
+        return view('admin.product.manage.remove', compact('product', 'supplier'));
+    }
+
+    public function storeProductRemove($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found');
+        }
+
+        //store to product-remove-transaction
+        ProductRemoveTransition::create([
+            'product_id' => $product->id,
+            'total_quantity' => request()->total_quantity,
+            'description' => request()->description
+        ]);
+
+        //reduce from database
+        $product->update([
+            'total_quantity' => DB::raw('total_quantity-' . request()->total_quantity)
+        ]);
+
+        return redirect('/admin/product')->with('success', 'Product removed successfully');
     }
 
     public function images()

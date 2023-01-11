@@ -16,17 +16,6 @@ class ProductApiController extends Controller
             'view_count' => DB::raw('view_count + 1')
         ]);
 
-        if (request()->user_id) {
-            $like = ProductLike::where('product_id', $product->id)->where('user_id', request()->user_id)->first();
-            if ($like) {
-                $css = 'red';
-            } else {
-                $css = 'black';
-            }
-        } else {
-            $css = 'black';
-        }
-
         $product = Product::where('slug', $slug)
             ->with('review.user', 'brand', 'category', 'color', 'order.user', 'images')
             ->first();
@@ -50,8 +39,7 @@ class ProductApiController extends Controller
             'data' => [
                 'product' => $product,
                 'randomProducts' => $randomProducts
-            ],
-            'css' => $css
+            ]
         ]);
     }
 
@@ -89,6 +77,23 @@ class ProductApiController extends Controller
         return response()->json([
             'message' => true,
             'data' => $product->like_count,
+            'css' => $css
+        ]);
+    }
+
+    public function getLike()
+    {
+        if ($user_id = request()->user_id) {
+            $product = Product::where('slug', request()->product_slug)->first();
+            $product_id = $product->id;
+
+            $productLike = ProductLike::where('user_id', $user_id,)->where('product_id', $product_id)->first();
+            $productLike->like_count == 0 ? $css = 'black' : $css = 'red';
+        } else {
+            $css = 'black';
+        }
+
+        return response()->json([
             'css' => $css
         ]);
     }

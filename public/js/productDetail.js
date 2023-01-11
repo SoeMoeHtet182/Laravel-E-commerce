@@ -3493,9 +3493,16 @@ var ViewAndLike = function ViewAndLike(props) {
   var likeProduct = function likeProduct() {
     axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('/api/like-product?product_slug=' + window.product_slug + '&user_id=' + window.auth.id).then(function (res) {
       setLike(res.data.data);
-      $('.fa-heart').css('color', res.data.css);
+      var product = document.getElementsByClassName(window.product_slug + ' fa-heart')[0];
+      product.style.color = res.data.css;
     });
   };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    window.auth ? axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('/api/like?product_slug=' + props.product + '&user_id=' + window.auth.id).then(function (res) {
+      var product = document.getElementsByClassName(props.product + ' fa-heart')[0];
+      product.style.color = res.data.css;
+    }) : '';
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "text-black",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -3506,10 +3513,7 @@ var ViewAndLike = function ViewAndLike(props) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "d-inline",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
-        className: "fa-regular fa-heart me-2",
-        style: {
-          'color': props.css
-        },
+        className: props.product ? props.product + " fa-regular fa-heart me-2" : "fa-regular fa-heart me-2",
         onClick: function onClick() {
           window.auth && likeProduct();
         }
@@ -3587,17 +3591,12 @@ function ProductDetail() {
     _useState10 = _slicedToArray(_useState9, 2),
     cartLoader = _useState10[0],
     setCartLoader = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-    _useState12 = _slicedToArray(_useState11, 2),
-    likeCss = _useState12[0],
-    setLikeCss = _useState12[1];
   if (window.auth) {
     var user = window.auth;
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
       axios__WEBPACK_IMPORTED_MODULE_6__["default"].get('/api/product/detail/' + window.product_slug + '?user_id=' + user.id).then(function (d) {
         setProduct(d.data.data.product);
         setRandomProducts(d.data.data.randomProducts);
-        setLikeCss(d.data.css);
         setLoader(false);
       });
     }, []);
@@ -3606,7 +3605,6 @@ function ProductDetail() {
       axios__WEBPACK_IMPORTED_MODULE_6__["default"].get('/api/product/detail/' + window.product_slug).then(function (d) {
         setProduct(d.data.data.product);
         setRandomProducts(d.data.data.randomProducts);
-        setLikeCss(d.data.css);
         setLoader(false);
       });
     }, []);
@@ -3821,7 +3819,7 @@ function ProductDetail() {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Component_ViewAndLike__WEBPACK_IMPORTED_MODULE_3__["default"], {
                     view: product.view_count,
                     like: product.like_count,
-                    css: likeCss
+                    product: product.slug
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Review_Review__WEBPACK_IMPORTED_MODULE_4__["default"], {
                     review: product.review
                   })]
@@ -3831,7 +3829,6 @@ function ProductDetail() {
           })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           className: "container",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -3851,48 +3848,51 @@ function ProductDetail() {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                 className: "d-flex justify-content-between",
                 children: randomProducts.map(function (d) {
-                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: "card p-3",
-                    style: {
-                      width: "262.5px",
-                      height: '343px'
-                    },
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-                      src: d.image_url,
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                    href: d.slug,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      className: "card p-3",
                       style: {
-                        height: '200px'
-                      }
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                      className: "card-body",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                        className: "card-text text-nowrap overflow-hidden",
-                        style: styles.card,
-                        children: d.name
-                      }), d.discount_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
-                        className: "mt-2",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                          className: "text-primary",
-                          style: styles.lineTrough,
-                          children: ["$", d.sale_price]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-                          className: "mx-2",
-                          children: ["$", d.sale_price - d.discount_price, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("b", {
-                            className: "text-danger ms-2",
-                            children: [(d.discount_price / d.sale_price * 100).toPrecision(2), "% off"]
+                        width: "262.5px",
+                        height: '343px'
+                      },
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                        src: d.image_url,
+                        style: {
+                          height: '200px'
+                        }
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                        className: "card-body",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                          className: "card-text text-nowrap overflow-hidden",
+                          style: styles.card,
+                          children: d.name
+                        }), d.discount_price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
+                          className: "mt-2",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+                            className: "text-primary",
+                            style: styles.lineTrough,
+                            children: ["$", d.sale_price]
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+                            className: "mx-2",
+                            children: ["$", d.sale_price - d.discount_price, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("b", {
+                              className: "text-danger ms-2",
+                              children: [(d.discount_price / d.sale_price * 100).toPrecision(2), "% off"]
+                            })]
                           })]
+                        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
+                            className: "mt-2 text-primary",
+                            children: ["$", d.sale_price]
+                          })
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Component_ViewAndLike__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                          view: d.view_count,
+                          like: d.like_count,
+                          product: d.slug
                         })]
-                      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h6", {
-                          className: "mt-2 text-primary",
-                          children: ["$", d.sale_price]
-                        })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Component_ViewAndLike__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                        view: d.view_count,
-                        like: d.like_count,
-                        css: likeCss
                       })]
-                    })]
-                  }, d.slug);
+                    })
+                  }, d.id);
                 })
               })
             })]

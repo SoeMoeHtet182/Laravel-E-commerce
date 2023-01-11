@@ -43,7 +43,7 @@ class ProfileApiController extends Controller
         if ($request->has('dataToApi')) {
             $user_name = $request->dataToApi;
             $user->update([
-                'name' => $user_name
+                'display_name' => $user_name
             ]);
             return response([
                 'message' => true,

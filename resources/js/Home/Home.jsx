@@ -83,7 +83,7 @@ export default function Home() {
                                                                     <h6 className='mt-2 text-primary'>${d.sale_price}</h6>
                                                                 </>
                                                         )}
-                                                        <ViewAndLike view={d.view_count} like={d.like_count} css={ likeCss} />
+                                                        <ViewAndLike view={d.view_count} like={d.like_count} product={ d.slug} />
                                                     </div>
                                                 </div>
                                             </a>
@@ -127,7 +127,7 @@ export default function Home() {
                                                                     <h6 className='mt-2 text-primary'>${d.sale_price}</h6>
                                                                 </>
                                                             )}
-                                                            <ViewAndLike view={d.view_count} like={d.like_count} css={ likeCss} />
+                                                            <ViewAndLike view={d.view_count} like={d.like_count} product={d.slug} />
                                                         </div>
                                                     </div>
                                                 </a>

@@ -217,30 +217,33 @@ class PageController extends Controller
         if ($category_id = request()->category_id) {
             $category = Category::find($category_id);
             $products = $category->product;
-            $productData = [];
-            foreach ($monthsYear as $my) {
-                foreach ($products as $p) {
-                    $pSale =  ProductOrder::where('product_id', $p->id)
-                        ->whereYear('created_at', $my['year'])->whereMonth('created_at', $my['month'])
-                        ->where('status', 'success')
-                        ->sum('total_quantity');
-                };
-                $productData[] = $pSale;
-            }
-
-            foreach ($products as $p) {
-                $dataForProducts[] = ProductOrder::where('product_id', $p->id)
-                    ->whereMonth('created_at', date('m'))
-                    ->where('status', 'success')
-                    ->sum('total_quantity');
-            }
             if (!$products->count()) {
                 $dataForProducts = [0, 0, 0, 0, 0, 0];
                 $productData = [0, 0, 0, 0, 0, 0];
+            } else {
+                $productData = [];
+                foreach ($monthsYear as $my) {
+                    foreach ($products as $p) {
+                        $pSale[] =  ProductOrder::where('product_id', $p->id)
+                            ->whereYear('created_at', $my['year'])
+                            ->whereMonth('created_at', $my['month'])
+                            ->where('status', 'success')
+                            ->sum('total_quantity');
+                    };
+                    $productSale = array_sum($pSale);
+                    $productData[] = $productSale;
+                }
+
+                foreach ($products as $p) {
+                    $dataForProducts[] = ProductOrder::where('product_id', $p->id)
+                        ->whereMonth('created_at', date('m'))
+                        ->where('status', 'success')
+                        ->sum('total_quantity');
+                }
             }
         } else {
             $products = [];
-            $dataForProducts = [];
+            $dataForProducts = [0, 0, 0, 0, 0, 0];
             $productData = [0, 0, 0, 0, 0, 0];
         }
 

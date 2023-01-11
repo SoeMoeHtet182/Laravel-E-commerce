@@ -22,7 +22,6 @@ export default function ProductDetail() {
     const [loader, setLoader] = useState(true);
     const [quantity, setQuantity] = useState(1);
     const [cartLoader, setCartLoader] = useState(false);
-    const [likeCss, setLikeCss] = useState('');
 
     if (window.auth) {
         const user = window.auth;
@@ -30,7 +29,6 @@ export default function ProductDetail() {
             axios.get('/api/product/detail/' + window.product_slug + '?user_id=' + user.id).then((d) => {
                 setProduct(d.data.data.product);
                 setRandomProducts(d.data.data.randomProducts);
-                setLikeCss(d.data.css);
                 setLoader(false);
             });
         }, []);
@@ -39,7 +37,6 @@ export default function ProductDetail() {
             axios.get('/api/product/detail/' + window.product_slug).then((d) => {
                 setProduct(d.data.data.product);
                 setRandomProducts(d.data.data.randomProducts);
-                setLikeCss(d.data.css);
                 setLoader(false);
             });
         }, []);
@@ -148,7 +145,7 @@ export default function ProductDetail() {
                                                 ))}
                                             </small>
                                         </div>
-                                        <ViewAndLike view={product.view_count} like={product.like_count} css={ likeCss} />
+                                        <ViewAndLike view={product.view_count} like={product.like_count} product={product.slug}/>
                                         <Review review={ product.review } />
                                     </div>
                                 </div>
@@ -158,7 +155,7 @@ export default function ProductDetail() {
                 </div>
                 {/* Single Page Ends Here */}
                 {/* Similar Starts Here */}
-                <div className="">
+                <div>
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
@@ -170,30 +167,32 @@ export default function ProductDetail() {
                             <div className="col-md-12">
                                 <div className='d-flex justify-content-between'>
                                 {randomProducts.map(d => (
-                                    <div className='card p-3' style={{ width: "262.5px", height: '343px' }} key={d.slug}>
-                                        <img src={d.image_url} style={{height: '200px'}} />
-                                        <div className='card-body'>
-                                            <div className='card-text text-nowrap overflow-hidden' style={styles.card}>{ d.name }</div>
-                                            {d.discount_price ? (
-                                                <h6 className='mt-2'>
-                                                <span className='text-primary' style={styles.lineTrough}>
-                                                    ${d.sale_price}
-                                                </span>
-                                                <span className='mx-2'>
-                                                    ${d.sale_price - d.discount_price}
-                                                    <b className='text-danger ms-2'>
-                                                        {(d.discount_price / d.sale_price * 100).toPrecision(2)}% off
-                                                    </b>
-                                                </span>
-                                            </h6>) : (
-                                                <>
-                                                    <h6 className='mt-2 text-primary'>${d.sale_price}</h6>
-                                                </>
-                                            )}
-                                            <ViewAndLike view={d.view_count} like={d.like_count} css={ likeCss} />
+                                    <a href={d.slug}  key={d.id}>
+                                        <div className='card p-3' style={{ width: "262.5px", height: '343px' }}>
+                                            <img src={d.image_url} style={{height: '200px'}} />
+                                            <div className='card-body'>
+                                                <div className='card-text text-nowrap overflow-hidden' style={styles.card}>{ d.name }</div>
+                                                {d.discount_price ? (
+                                                    <h6 className='mt-2'>
+                                                    <span className='text-primary' style={styles.lineTrough}>
+                                                        ${d.sale_price}
+                                                    </span>
+                                                    <span className='mx-2'>
+                                                        ${d.sale_price - d.discount_price}
+                                                        <b className='text-danger ms-2'>
+                                                            {(d.discount_price / d.sale_price * 100).toPrecision(2)}% off
+                                                        </b>
+                                                    </span>
+                                                </h6>) : (
+                                                    <>
+                                                        <h6 className='mt-2 text-primary'>${d.sale_price}</h6>
+                                                    </>
+                                                )}
+                                                <ViewAndLike view={d.view_count} like={d.like_count} product={d.slug}/>
                                             </div>
                                         </div>
-                                    ))}
+                                    </a>
+                                ))}
                                 </div>
                             </div>
                         </div>

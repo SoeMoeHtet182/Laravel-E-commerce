@@ -8,7 +8,7 @@ import '../../../css/profile.css';
 
 const Profile = () => {
     const user_id = window.auth.id;
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState();
     const [loader, setLoader] = useState(true);
 
     useEffect(() => {
@@ -21,7 +21,8 @@ const Profile = () => {
                     setLoader(false);
                 }
             })
-    },[]);
+    }, []);
+
     return (
         <>
             {loader && <Spinner />}
@@ -58,7 +59,7 @@ const Profile = () => {
                                                 <p className="mb-0">{window.locale === 'mm' ? 'စခရင်နာမည်' : 'Display Name'}</p>
                                             </div>
                                             <div className="col-sm-9">
-                                                <p className="text-muted mb-0">{user.display_name}</p>
+                                            <p className="text-muted mb-0">{ user.display_name }</p>
                                             </div>
                                         </div>
                                         <hr />
