@@ -1,5 +1,4 @@
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 </button>
 <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -17,10 +16,10 @@
             <div class="dropdown-menu">
                 <ul class="nav flex-column bg-white text-center">
                     @foreach ($categories as $c)
-                        <a href="{{ url('/products?product=new&category=' . $c->slug) }}" style="color: black">
-                            <li class="nav-item m-2">{{ app()->getLocale() === 'mm' ? $c->mm_name : $c->name }}</li>
-                        </a>
-                        <div class="border opacity-50"></div>
+                    <a href="{{ url('/products?product=new&category=' . $c->slug) }}" style="color: black">
+                        <li class="nav-item m-2">{{ app()->getLocale() === 'mm' ? $c->mm_name : $c->name }}</li>
+                    </a>
+                    <div class="border opacity-50"></div>
                     @endforeach
                 </ul>
             </div>
@@ -28,8 +27,7 @@
         <li class="nav-item">
             <a class="nav-link position-relative" href="/profile#/cart">{{ __('site.cart') }}
                 @auth
-                    <span id="cart"
-                        class="position-absolute top-0 start-100 @if ($cartCount === 0) d-none @endif
+                <span id="cart" class="position-absolute top-0 start-100 @if ($cartCount === 0) d-none @endif
                         translate-middle badge bg-danger rounded-pill">{{ $cartCount }}</span>
                 @endauth
             </a>
@@ -42,15 +40,15 @@
         </li>
         <small class="small-menu d-none">Account settings</small>
         @guest
-            <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/login') }}">{{ __('site.log in') }}</a></li>
-            <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/register') }}">{{ __('site.sign in') }}</a>
-            </li>
+        <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/login') }}">{{ __('site.log in') }}</a></li>
+        <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/register') }}">{{ __('site.sign in') }}</a>
+        </li>
         @endguest
         @auth
-            <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/profile') }}">{{ __('site.profile') }}</a>
-            </li>
-            <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/logout') }}">{{ __('site.log out') }}</a>
-            </li>
+        <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/profile') }}">{{ __('site.profile') }}</a>
+        </li>
+        <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/logout') }}">{{ __('site.log out') }}</a>
+        </li>
         @endauth
         <small class="small-menu d-none text-center">Language</small>
         <li class="nav-item nav-hide"><a class="nav-link" href="{{ url('/locale/mm') }}">{{ __('site.myanmar') }}</a>
@@ -59,29 +57,28 @@
         </li>
     </ul>
     <div class="dropdown" id="account-button">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            {{ __('site.account') }}
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-gears"></i>
         </button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" id="account-setting">
             @guest
-                <li><a class="dropdown-item" href="{{ url('/login') }}">{{ __('site.log in') }}</a></li>
-                <li><a class="dropdown-item" href="{{ url('/register') }}">{{ __('site.sign in') }}</a></li>
+            <li><a class="dropdown-item" href="{{ url('/login') }}">{{ __('site.log in') }}</a></li>
+            <li><a class="dropdown-item" href="{{ url('/register') }}">{{ __('site.sign in') }}</a></li>
+            <li><a class="dropdown-item" href="#">{{ __('site.language') }}</a></li>
             @endguest
             @auth
-                <li><a class="dropdown-item" href="{{ url('/profile') }}">{{ __('site.profile') }}</a></li>
-                <li><a class="dropdown-item" href="{{ url('/logout') }}">{{ __('site.log out') }}</a></li>
+            <li><a class="dropdown-item" href="{{ url('/profile') }}">{{ __('site.profile') }}</a></li>
+            <div class="dropdown ms-2" id="lang-button">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ __('site.language') }}
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ url('/locale/mm') }}">{{ __('site.myanmar') }}</a></li>
+                    <li><a class="dropdown-item" href="{{ url('/locale/en') }}">{{ __('site.english') }}</a></li>
+                </ul>
+            </div>
+            <li><a class="dropdown-item" href="{{ url('/logout') }}">{{ __('site.log out') }}</a></li>
             @endauth
-        </ul>
-    </div>
-    <div class="dropdown ms-2" id="lang-button">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            {{ __('site.language') }}
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ url('/locale/mm') }}">{{ __('site.myanmar') }}</a></li>
-            <li><a class="dropdown-item" href="{{ url('/locale/en') }}">{{ __('site.english') }}</a></li>
         </ul>
     </div>
 </div>

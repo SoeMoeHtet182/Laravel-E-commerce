@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->foreignIdFor(Brand::class);
             $table->foreignIdFor(Supplier::class);
             $table->integer('buying_price');
-            $table->text('slug')->unique();
+            $table->string('slug')->unique();
             $table->string('name');
             $table->text('image');
             $table->integer('sale_price');

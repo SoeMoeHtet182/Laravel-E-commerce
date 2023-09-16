@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet" />
 
-    <title>One PIECE - Greatest of all time</title>
+    <title>Luminaut - Reveal Your Desire</title>
 
     <!-- Bootstrap CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -26,7 +26,8 @@
     <link rel="stylesheet" href="/web_assets/css/owl.css" />
     <link rel="stylesheet" href="/web_assets/css/flex-slider.css">
     <link rel="stylesheet" href="/web_assets/css/custom.css">
-
+    <link rel="stylesheet" href="/resources/css/master.css">
+    @include('user.layout.css')
     @yield('style')
 </head>
 
@@ -35,7 +36,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container" id="main-nav">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <h1>One PIECE</h1>
+                <h1>Luminaut</h1>
             </a>
 
             @include('user.layout.headerNav')

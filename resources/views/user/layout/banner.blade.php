@@ -20,8 +20,10 @@
                         <a href="{{ url('/') }}">{{ __('site.shop') }}</a>
                     </div>
                     <div class="mt-2">
-                        <a class="btn btn-dark me-1" href="{{ url('/login') }}">{{ __('site.log in') }}</a>
-                        <a class="btn btn-dark sign-in-btn" href="{{ url('/register') }}">{{ __('site.sign in') }}</a>
+                        <a class="btn btn-dark me-1" href="{{ url('/login') }}" id="log-in-btn">
+                            {{ __('site.log in') }}</a>
+                        <a class="btn btn-dark sign-in-btn" href="{{ url('/register') }}" id="register-btn">
+                            {{ __('site.sign in') }}</a>
                     </div>
                 </div>
             </div>
