@@ -30,21 +30,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        if (Schema::hasTable('categories')) {
-            $data = Category::all();
-            view()->share('categories', $data);
-            View::composer('*', function ($view) {
-                if (auth()->check()) {
-                    $cartCount = ProductCart::where('user_id', auth()->user()->id)->count();
-                    $view->with('cartCount', $cartCount);
-                }
-            });
-            View::composer('*', function ($view) {
-                if (auth()->guard('admin')->user()) {
-                    $orderCount = ProductOrder::where('status', 'pending')->count();
-                    $view->with('noti', $orderCount);
-                }
-            });
-        }
+        // if (Schema::hasTable('categories')) {
+        //     $data = Category::all();
+        //     view()->share('categories', $data);
+        //     View::composer('*', function ($view) {
+        //         if (auth()->check()) {
+        //             $cartCount = ProductCart::where('user_id', auth()->user()->id)->count();
+        //             $view->with('cartCount', $cartCount);
+        //         }
+        //     });
+        //     View::composer('*', function ($view) {
+        //         if (auth()->guard('admin')->user()) {
+        //             $orderCount = ProductOrder::where('status', 'pending')->count();
+        //             $view->with('noti', $orderCount);
+        //         }
+        //     });
+        // }
     }
 }
