@@ -49,7 +49,7 @@ Route::get('/locale/{locale}', function ($locale) {
 Route::get('/admin/login', 'Admin\PageController@showLogin');
 Route::post('/admin/login', 'Admin\PageController@login');
 
-Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['admin']], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['admin']], function () {
     Route::post('logout', 'PageController@logout');
     Route::get('/', 'PageController@showDashboard');
     Route::resource('/category', 'CategoryController');
